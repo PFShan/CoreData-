@@ -1,0 +1,1059 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>    
+    <script type="text/javascript" src="http://csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script>
+
+
+    <script id="allmobilize" charset="utf-8" src="http://a.yunshipei.com/46aae4d1e2371e4aa769798941cef698/allmobilize.min.js"></script>
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>Objective-C中的@dynamic - haishu_zheng的专栏
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Objective-C中的@dynamic&#160;一、@dynamic与@synthesize的区别@property有两个对应的词，一个是@synthesize，一个是@dynamic。如果@synthesize和@dynamic都没写，那么默认的就是@syntheszie var =&#160;_var;&#160;@synthesize的语义是如果你没有手动实现setter方法和getter方法，" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://static.csdn.net/public/common/toolbar/css/index.css">        <!--new top-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/default/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/haishu_zheng/rss/list" />
+    <link rel="shortcut icon" href="http://csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+
+</head>
+<body>
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://static.csdn.net/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/haishu_zheng">haishu_zheng的专栏</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+                <li id="btnContents"><a href="http://blog.csdn.net/haishu_zheng?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/haishu_zheng?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/haishu_zheng/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "haishu_zheng";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/haishu_zheng";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+
+<a href="http://blog.csdn.net/csdnedu/article/details/42673637">
+<font color=blue>CSDN学院精品课程推荐</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/41842837">
+<font color=red>《京东技术解密》有奖试读获奖名单公布
+</font></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/42172979">
+<font color=blue>“我的2014”年度征文活动火爆开启
+</font></a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<a href="http://blog.csdn.net/blogdevteam/article/details/42526281">
+<font color=red>11.1-12.31推荐文章汇总
+</font></a>
+</div>                        </div>
+                        
+
+  
+<link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<script language='JavaScript' type='text/javascript' src='http://download.csdn.net/js/jquery.cookie.js'></script>
+<script type="text/javascript" src="http://csdnimg.cn/rabbit/search-service/main.js"></script>
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/haishu_zheng/article/details/12873151">
+        Objective-C中的@dynamic
+        </a></span>
+    </h1>
+</div>
+
+    <div class="article_manage">
+        <span class="link_categories">
+        分类：
+            <a href="/haishu_zheng/article/category/1796295" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">iOS</a> 
+        </span>
+    <span class="link_postdate">2013-10-19 18:23</span>
+    <span class="link_view" title="阅读次数">4025人阅读</span>
+    <span class="link_comments" title="评论次数"><a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+    <span class="link_collect"><a href="javascript:void(0);" onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shoucang']);collectArticle('Objective-C中的@dynamic','12873151');return false;" title="收藏">收藏</a></span>
+    <span class="link_report"><a href="#report"  onclick="javascript:_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_jubao']);report(12873151,2);return false;" title="举报">举报</a></span>
+    
+</div>
+
+  
+    
+<div id="article_content" class="article_content">
+
+<p align="center">Objective-C中的@dynamic</p>
+<p>&nbsp;</p>
+<p><strong>一、@dynamic与@synthesize的区别</strong></p>
+<p>@property有两个对应的词，一个是@synthesize，一个是@dynamic。如果@synthesize和@dynamic都没写，那么默认的就是@syntheszie var =&nbsp;_var;</p>
+<p>&nbsp;</p>
+<p>@synthesize的语义是如果你没有手动实现setter方法和getter方法，那么编译器会自动为你加上这两个方法。</p>
+<p>&nbsp;</p>
+<p><span style="color:#262626">@dynamic</span><span style="color:#353535">告</span><span style="color:#353535">诉编译</span><span style="color:#353535">器,</span>属性的<span style="color:#353535">setter</span><span style="color:#353535">与</span><span style="color:#353535">getter</span><span style="color:#353535">方法由用</span><span style="color:#353535">户</span><span style="color:#353535">自己</span><span style="color:#353535">实现，</span><span style="color:#353535">不自</span><span style="color:#353535">动</span><span style="color:#353535">生成。</span><span style="color:#262626">（当然对于readonly</span>的属性只需提供getter即可）。假如一个属性被声明为@dynamic
+ var，然后你没有提供@setter方法和@getter方法，编译的时候没问题，但是当程序运行到instance.var =someVar，由于缺setter方法会导致程序崩溃；或者当运行到 someVar = var时，由于缺getter方法同样会导致崩溃。编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定。</p>
+<p><span style="color:#262626">&nbsp;</span></p>
+<p><strong><span style="color:#262626">二、通过私有变量来实现@dynamic</span>的存取方法</strong></p>
+<p><span style="color:#262626">1</span><span style="color:#262626">）Book.h</span></p>
+<p><span style="color:#643820">#import </span><span style="color:#C41A16">&lt;Foundation/Foundation.h&gt;</span></p>
+<p><span style="color:#643820">#import </span><span style="color:#C41A16">&lt;CoreData/CoreData.h&gt;</span></p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@interface</span> Book :<span style="color:#5C2699">NSObject</span></p>
+<p>{</p>
+<p>&nbsp;<span style="color:#AA0D91">@private</span></p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">__strong</span> <span style="color:#5C2699">NSString</span> *_name;</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">__strong</span> <span style="color:#5C2699">NSString</span> *_author;</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@property</span>(<span style="color:#AA0D91">nonatomic</span>,
+<span style="color:#AA0D91">copy</span>) <span style="color:#5C2699">NSString</span> *name;</p>
+<p><span style="color:#AA0D91">@property</span>(<span style="color:#AA0D91">nonatomic</span>,
+<span style="color:#AA0D91">copy</span>) <span style="color:#5C2699">NSString</span> *author;</p>
+<p><span style="color:#AA0D91">@property</span>(<span style="color:#AA0D91">nonatomic</span>,
+<span style="color:#AA0D91">copy</span>) <span style="color:#5C2699">NSString</span>*version;</p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@end</span></p>
+<p>&nbsp;</p>
+<p><span style="color:#262626">2</span><span style="color:#262626">）Book.m</span></p>
+<p><span style="color:#643820">#import </span><span style="color:#C41A16">&quot;Book.h&quot;</span></p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@implementation</span> Book</p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@dynamic</span> name;</p>
+<p><span style="color:#AA0D91">@dynamic</span>author;</p>
+<p><span style="color:#AA0D91">@synthesize</span>version = <span style="color:#3F6E74">
+_version</span>;</p>
+<p>&nbsp;</p>
+<p>- (<span style="color:#AA0D91">id</span>)init</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">self</span> = [<span style="color:#AA0D91">super</span>
+<span style="color:#2E0D6E">init</span>];</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">if</span>(<span style="color:#AA0D91">self</span>)</p>
+<p>&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">return</span> <span style="color:#AA0D91">self</span>;</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>- (<span style="color:#5C2699">NSString</span> *)name</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">if</span>(<span style="color:#AA0D91">nil</span> ==
+<span style="color:#3F6E74">_name</span>)</p>
+<p>&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#3F6E74">_name</span> = <span style="color:#C41A16">
+@&quot;you forgot inputbook name&quot;</span>;</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">return</span> <span style="color:#3F6E74">_name</span>;</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>- (<span style="color:#AA0D91">void</span>)setName:(<span style="color:#5C2699">NSString</span> *)name</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#3F6E74">_name</span> = name;</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#2E0D6E">NSLog</span>(<span style="color:#C41A16">@&quot;_name address:%p&quot;</span>,
+<span style="color:#3F6E74">_name</span>);</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>- (<span style="color:#5C2699">NSString</span> *)author</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">if</span>(<span style="color:#AA0D91">nil</span> ==
+<span style="color:#3F6E74">_author</span>)</p>
+<p>&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#3F6E74">_author</span> = <span style="color:#C41A16">
+@&quot;you forgot inputbook author&quot;</span>;</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">return</span> <span style="color:#3F6E74">_author</span>;</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>- (<span style="color:#AA0D91">void</span>)setAuthor:(<span style="color:#5C2699">NSString</span> *)author</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#3F6E74">_author</span> = author;</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@end</span></p>
+<p><span style="color:#262626">&nbsp;</span></p>
+<p><span style="color:#262626">从上面的代码可以看出，用@dynamic</span>后，可以在存取方法中访问一个私有变量来赋&#20540;或取&#20540;。而@synthesize则直接用@synthesize var = _var；来让属性和私有变量直接等同起来。这就是二者在书写形式上的差别。</p>
+<p><span style="color:#262626">&nbsp;</span></p>
+<p><strong><span style="color:#262626">三、通过消息转发来实现@dynamic</span>的存取方法</strong></p>
+<p><span style="color:#262626">若对于一个属性使用了@dynamic var = _var</span>，则编译器立马报错。这样你就无法像@synthesize那样在var的setter方法和getter方法中使用_var，当然你更不能编写如下的setter方法和getter方法</p>
+<p>- (<span style="color:#AA0D91">void</span>)setVar:(<span style="color:#AA0D91">id</span>)newVar</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">self</span>.<span style="color:#26474B">var</span> =newVar;</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>- (<span style="color:#AA0D91">void</span>)var</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">return</span> <span style="color:#AA0D91">self</span>.<span style="color:#26474B">var</span>;</p>
+<p>}</p>
+<p>这两个方法都是自己调用自己，会导致无限循环直接导致程序崩溃。</p>
+<p>&nbsp;</p>
+<p>这里提供一种利用消息转发机制来实现@dynamic的setter和getter方法。</p>
+<p>先上代码：</p>
+<p>1）Book.h</p>
+<p><span style="color:#643820">#import </span><span style="color:#C41A16">&lt;Foundation/Foundation.h&gt;</span></p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@interface</span> Book :<span style="color:#5C2699">NSObject</span></p>
+<p>{</p>
+<p>&nbsp;<span style="color:#AA0D91">@private</span></p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#5C2699">NSMutableDictionary</span> *_propertiesDict;</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@property</span> (<span style="color:#AA0D91">nonatomic</span>,
+<span style="color:#AA0D91">copy</span>) <span style="color:#5C2699">NSString</span> *name;</p>
+<p><span style="color:#AA0D91">@property</span> (<span style="color:#AA0D91">nonatomic</span>,
+<span style="color:#AA0D91">copy</span>) <span style="color:#5C2699">NSString</span>*author;</p>
+<p><span style="color:#AA0D91">@property</span> (<span style="color:#AA0D91">nonatomic</span>,
+<span style="color:#AA0D91">copy</span>) <span style="color:#5C2699">NSString</span>*version;</p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@end</span></p>
+<p>2）Book.m</p>
+<p><span style="color:#643820">#import </span><span style="color:#C41A16">&quot;Book.h&quot;</span></p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@implementation</span> Book</p>
+<p><span style="color:#AA0D91">@dynamic</span>&nbsp;&nbsp;&nbsp; name; <span style="color:#007400">
+// </span><span style="color:#007400">不能写成</span><span style="color:#007400">name = _name;</span><span style="color:#007400">否则编译器马上报错</span></p>
+<p><span style="color:#AA0D91">@dynamic</span>&nbsp;&nbsp;&nbsp; author;</p>
+<p><span style="color:#AA0D91">@synthesize</span>version;</p>
+<p>&nbsp;</p>
+<p>- (<span style="color:#AA0D91">id</span>)init</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">self</span> = [<span style="color:#AA0D91">super</span>
+<span style="color:#2E0D6E">init</span>];</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">if</span>(<span style="color:#AA0D91">self</span>)</p>
+<p>&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#3F6E74">_propertiesDict</span> = [[<span style="color:#5C2699">NSMutableDictionary</span>
+<span style="color:#2E0D6E">alloc</span>] <span style="color:#2E0D6E">init</span>];</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; </p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">return</span> <span style="color:#AA0D91">self</span>;</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>- (<span style="color:#5C2699">NSMethodSignature</span> *)methodSignatureForSelector:(<span style="color:#AA0D91">SEL</span>)selector</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#5C2699">NSString</span> *sel = <span style="color:#2E0D6E">
+NSStringFromSelector</span>(selector);</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">if</span> ([sel <span style="color:#2E0D6E">rangeOfString</span>:<span style="color:#C41A16">@&quot;set&quot;</span>].<span style="color:#5C2699">location</span> ==
+<span style="color:#1C00CF">0</span>)</p>
+<p>&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">return</span> [<span style="color:#5C2699">NSMethodSignature</span>
+<span style="color:#2E0D6E">signatureWithObjCTypes</span>:<span style="color:#C41A16">&quot;v@:@&quot;</span>];</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">else</span></p>
+<p>&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">return</span> [<span style="color:#5C2699">NSMethodSignature</span>
+<span style="color:#2E0D6E">signatureWithObjCTypes</span>:<span style="color:#C41A16">&quot;@@:&quot;</span>];</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>- (<span style="color:#AA0D91">void</span>)forwardInvocation:(<span style="color:#5C2699">NSInvocation</span> *)invocation</p>
+<p>{</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#5C2699">NSString</span> *key = <span style="color:#2E0D6E">
+NSStringFromSelector</span>([invocation <span style="color:#2E0D6E">selector</span>]);</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">if</span> ([key <span style="color:#2E0D6E">rangeOfString</span>:<span style="color:#C41A16">@&quot;set&quot;</span>].<span style="color:#5C2699">location</span> ==
+<span style="color:#1C00CF">0</span>)</p>
+<p>&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; key= [[key <span style="color:#2E0D6E">substringWithRange</span>:<span style="color:#2E0D6E">NSMakeRange</span>(<span style="color:#1C00CF">3</span>, [key
+<span style="color:#2E0D6E">length</span>]-<span style="color:#1C00CF">4</span>)]
+<span style="color:#2E0D6E">lowercaseString</span>];</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#5C2699">NSString</span> *obj;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[invocation <span style="color:#2E0D6E">getArgument</span>:&amp;obj<span style="color:#2E0D6E">atIndex</span>:<span style="color:#1C00CF">2</span>];</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [<span style="color:#3F6E74">_propertiesDict</span> <span style="color:#2E0D6E">
+setObject</span>:obj <span style="color:#2E0D6E">forKey</span>:key];</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">else</span></p>
+<p>&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#5C2699">NSString</span> *obj = [<span style="color:#3F6E74">_propertiesDict</span>
+<span style="color:#2E0D6E">objectForKey</span>:key];</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[invocation <span style="color:#2E0D6E">setReturnValue</span>:&amp;obj];</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">@end</span></p>
+<p>&nbsp;</p>
+<p>3）main.m</p>
+<p><span style="color:#643820">#import </span><span style="color:#C41A16">&lt;Foundation/Foundation.h&gt;</span></p>
+<p><span style="color:#643820">#import </span><span style="color:#C41A16">&quot;Book.h&quot;</span></p>
+<p>&nbsp;</p>
+<p><span style="color:#AA0D91">int</span> main(<span style="color:#AA0D91">int</span> argc,
+<span style="color:#AA0D91">const</span> <span style="color:#AA0D91">char</span> * argv[])</p>
+<p>{</p>
+<p>&nbsp;</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">@autoreleasepool</span></p>
+<p>&nbsp;&nbsp;&nbsp; {</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#3F6E74">Book</span> *book = [[<span style="color:#3F6E74">Book</span>
+<span style="color:#2E0D6E">alloc</span>] <span style="color:#2E0D6E">init</span>];</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;book.<span style="color:#3F6E74">name</span> = <span style="color:#C41A16">
+@&quot;c&#43;&#43; primer&quot;</span>;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;book.<span style="color:#3F6E74">author</span> = <span style="color:#C41A16">
+@&quot;Stanley B.Lippman&quot;</span>;</p>
+<p>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;book.<span style="color:#3F6E74">version</span> = <span style="color:#C41A16">
+@&quot;5.0&quot;</span>;</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#2E0D6E">NSLog</span>(<span style="color:#C41A16">@&quot;%@&quot;</span>, book.<span style="color:#3F6E74">name</span>);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#2E0D6E">NSLog</span>(<span style="color:#C41A16">@&quot;%@&quot;</span>, book.<span style="color:#3F6E74">author</span>);</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color:#2E0D6E">NSLog</span>(<span style="color:#C41A16">@&quot;%@&quot;</span>, book.<span style="color:#3F6E74">version</span>);</p>
+<p>&nbsp;&nbsp;&nbsp; }</p>
+<p>&nbsp;&nbsp;&nbsp; <span style="color:#AA0D91">return</span> <span style="color:#1C00CF">0</span>;</p>
+<p>}</p>
+<p>&nbsp;</p>
+<p>程序分析：</p>
+<p>1）<span style="color:#2B2B2B">在</span><span style="color:#2B2B2B">给</span><span style="color:#2B2B2B">程序添加消息</span><span style="color:#2B2B2B">转发</span><span style="color:#2B2B2B">功能以前，必</span><span style="color:#2B2B2B">须</span><span style="color:#2B2B2B">覆盖两个方法，即methodSignatureForSelector:</span>和forwardInvocation:。methodSignatureForSelector:的作用在于<span style="color:#2B2B2B">为</span><span style="color:#2B2B2B">另一个</span><span style="color:#2B2B2B">类实现</span><span style="color:#2B2B2B">的消息</span><span style="color:#2B2B2B">创</span><span style="color:#2B2B2B">建一个有效的方法</span><span style="color:#2B2B2B">签</span><span style="color:#2B2B2B">名。forwardInvocation:</span>将<span style="color:#2B2B2B">选择</span><span style="color:#2B2B2B">器</span><span style="color:#2B2B2B">转发给</span><span style="color:#2B2B2B">一个真正</span><span style="color:#2B2B2B">实现</span><span style="color:#2B2B2B">了</span><span style="color:#2B2B2B">该</span><span style="color:#2B2B2B">消息的</span><span style="color:#2B2B2B">对</span><span style="color:#2B2B2B">象。</span></p>
+<p><span style="color:#2B2B2B">&nbsp;</span></p>
+<p><span style="color:#2B2B2B">2</span><span style="color:#2B2B2B">）Objective-C</span>中的方法默认被隐藏了两个参数：self和_cmd。self指向对象本身，_cmd指向方法本身。举两个例子来说明：</p>
+<p><span style="color:#2B2B2B">&nbsp;&nbsp;&nbsp; </span><span style="color:#2B2B2B">例一：- (NSString *)name</span></p>
+<p><span style="color:#2B2B2B">这个方法实际上有两个参数：self</span>和_cmd。</p>
+<p><span style="color:#2B2B2B">&nbsp;&nbsp;&nbsp; </span><span style="color:#2B2B2B">例二：- (void)setValue:(int)val</span></p>
+<p><span style="color:#2B2B2B">这个方法实际上有三个参数：self, _cmd</span>和val。</p>
+<p><span style="color:#2B2B2B">&nbsp;&nbsp;&nbsp; </span><span style="color:#2B2B2B">被指定为动态实现的方法的参数类型有如下的要求：</span></p>
+<p><span style="color:#2B2B2B">&nbsp;&nbsp;&nbsp; A.</span><span style="color:#2B2B2B">第一个参数类型必须是id</span>（就是self的类型）</p>
+<p><span style="color:#2B2B2B">&nbsp;&nbsp;&nbsp; B.</span><span style="color:#2B2B2B">第二个参数类型必须是SEL</span>（就是_cmd的类型）</p>
+<p><span style="color:#2B2B2B">&nbsp;&nbsp;&nbsp; C.</span><span style="color:#2B2B2B">从第三个参数起，可以按照原方法的参数类型定义。举两个例子来说明：</span></p>
+<p><span style="color:#2B2B2B">&nbsp;&nbsp;&nbsp; </span><span style="color:#2B2B2B">例一：setHeight:(CGFloat)height</span>中的参数height是浮点型的，所以第三个参数类型就是f。</p>
+<p><span style="color:#2B2B2B">&nbsp;&nbsp;&nbsp; </span><span style="color:#2B2B2B">例二：再比如setName:(NSString *)name</span>中的参数name是字符串类型的，所以第三个参数类型就是@</p>
+<p><span style="color:#2B2B2B">&nbsp;</span></p>
+<p><span style="color:#2B2B2B">3</span><span style="color:#2B2B2B">）在main.m</span>中有一句代码是book.<span style="color:#3F6E74">name</span> =
+<span style="color:#C41A16">@&quot;c&#43;&#43; primer&quot;</span>;程序运行到这里时，会去Book.m中寻找setName:这个赋&#20540;方法。但是Book.m里并没有这个方法，于是程序进入<span style="color:#2B2B2B">methodSignatureForSelector:</span><span style="color:#2B2B2B">中进行消息转发。执行完之后，以</span><span style="color:#C41A16">&quot;v@:@&quot;</span>作为方法签名类型返回。</p>
+<p>&nbsp;&nbsp;&nbsp; 这里<span style="color:#C41A16">v@:@</span>是什么东西呢？实际上，这里的第一个字符v代表函数的返回类型是void，后面三个字符参考上面2）中的解释就可以知道，分别是self, _cmd, name这三个参数的类型id, SEL, NSString。</p>
+<p>&nbsp;&nbsp;&nbsp; 接着程序进入forwardInvocation方法。得到的key为方法名称setName:，然后利用[invocation<span style="color:#2E0D6E">getArgument</span>:&amp;obj
+<span style="color:#2E0D6E">atIndex</span>:<span style="color:#1C00CF">2</span>];获取到参数&#20540;，这里是“c&#43;&#43; primer”。这里的index为什么要取2呢？如前面分析，第0个参数是self，第1个参数是_cmd，第2个参数才是方法后面带的那个参数。</p>
+<p>&nbsp;&nbsp;&nbsp; 最后利用一个可变字典来赋&#20540;。这样就完成了整个setter过程。</p>
+<p>&nbsp;</p>
+<p>4）在main.m中有一句代码是 <span style="color:#2E0D6E">NSLog</span>(<span style="color:#C41A16">@&quot;%@&quot;</span>, book.<span style="color:#3F6E74">name</span>);，程序运行到这里时，会去Book.m中寻找name这个取&#20540;方法 。但是Book.m里并没有这个取&#20540;方法，于是程序进入<span style="color:#2B2B2B">methodSignatureForSelector:</span><span style="color:#2B2B2B">中进行消息转发。执行完之后，以</span><span style="color:#C41A16">&quot;@@:&quot;</span>作为方法签名类型返回。这里第一字符@代表函数返回类型NSString，第二个字符@代表self的类型id，第三个字符:代表_cmd的类型SEL。</p>
+<p>&nbsp;&nbsp;&nbsp; 接着程序进入forwardInvocation方法。得到的key为方法名称name。最后根据这个key从字典里获取相应的&#20540;，这样就完成了整个getter过程。</p>
+<p>&nbsp;</p>
+<p>5）注意，调试代码的过程，我们发现只有name和author的赋&#20540;和取&#20540;进入methodSignatureForSelector:和forwardInvocation:这两个方法。还有一个属性version的赋&#20540;和取&#20540;，并没有进入methodSignatureForSelector:和forwardInvocation:这两个方法。这是因为，version属性被标识为@synthesize，编译器自动会加上setVersion和version两个方法，所以就不用消息转发了。</p>
+<p>&nbsp;</p>
+<p><strong>四、@dynamic在NSManagedObject的子类中的使用</strong></p>
+<p>&nbsp;&nbsp;&nbsp; @dynamic最常用的使用是在NSManagedObject中，此时不需要显示编程setter和getter方法。原因是：@dynamic告诉编译器不做处理，使编译通过，其getter和setter方法会在运行时动态创建，<span style="color:#FB0007">由Core Data</span>框架<span style="color:#FB0007">为</span><span style="color:#FB0007">此</span><span style="color:#FB0007">类</span><span style="color:#FB0007">属性生成存取方法。</span></p>
+
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+<div class="bdsharebuttonbox" style="float: right;">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+<!--192.168.100.33-->
+<ul class="article_next_prev">
+            <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='/haishu_zheng/article/details/12872315';">上一篇</span><a href="/haishu_zheng/article/details/12872315" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">iOS内存管理</a></li>
+            <li class="next_article"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian']);location.href='/haishu_zheng/article/details/16992259';">下一篇</span><a href="/haishu_zheng/article/details/16992259" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_xiayipian'])">Xcode5制作iOS静态库</a></li>
+</ul>
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+
+        <div id="digg" ArticleId="12873151">
+            <dl id="btnDigg" class="digg digg_disable">
+                <dt onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_ding'])">顶</dt>
+                <dd>0</dd>
+            </dl>
+            <dl id="btnBury" class="digg digg_disable">
+                <dt onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_cai'])">踩</dt>
+                <dd>1</dd>
+            </dl>
+        </div>
+</div>
+      <dl class="blog-associat-tag">
+        <dt>主题推荐</dt>
+        <dd>
+                <a href="http://www.csdn.net/tag/objective-c" target="_blank" class="blog-tage-red" >objective-c</a> 
+                <a href="http://www.csdn.net/tag/编译器" target="_blank" class="blog-tage-red" >编译器</a> 
+                <a href="http://www.csdn.net/tag/interface" target="_blank" class="blog-tage-red" >interface</a> 
+                <a href="http://www.csdn.net/tag/对象" target="_blank" class="blog-tage-red" >对象</a> 
+                <a href="http://www.csdn.net/tag/框架" target="_blank" class="blog-tage-red" >框架</a> 
+        </dd>
+    </dl> 
+
+
+<dl class="blog-ass-articl tracking-ad"  data-mod="popu_36" id="res-relatived"> 
+     <dt><span>猜你在找</span></dt>    
+</dl>
+
+<script type="text/javascript">
+    var searchtitletags = 'Objective-C中的@dynamic' + ',' + 'objective-c,编译器,interface,对象,框架';
+    searchService({
+        index: 'blog',
+        query: searchtitletags,
+        from: 10,
+        size: 10,
+        appendTo: '#res-relatived',
+        url: 'recommend',
+        his: 2,
+        client: "blog_cf_enhance",
+        tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+    });
+
+ </script>   
+
+
+    <div id="ad_cen">
+   
+          <script type="text/javascript">
+              new Ad(4, 'ad_cen');
+          </script>
+    </div>
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '12873151';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+    <script type="text/javascript">
+    new Ad(5, 'ad_bot');
+    </script>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);
+        
+        /*
+        if($("#comment_content").length>0)
+        {
+            $("#quick-reply").show();
+
+            $("#quick-reply").click(function(){
+                setEditorFocus();
+            });
+        }       
+     
+        var d_top = $('#d-top-a');
+
+        document.onscroll = function ()
+        {
+            var scrTop = (document.body.scrollTop || document.documentElement.scrollTop);
+            if (scrTop > 500)
+            {
+                d_top.show();
+            } else
+            {
+                d_top.hide();
+            }
+        }
+        $('#d-top-a').click(function ()
+        {
+            scrollTo(0, 0);
+            this.blur();
+            return false;
+        });
+        */
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+<div class="tag_list">
+    <h5>
+        <a href="http://www.csdn.net/tag/" target="_blank">核心技术类目</a></h5>
+    <div class="classify">
+<a title="全部主题" href="http://www.csdn.net/tag" target="_blank" onclick="LogClickCount(this,336);">全部主题</a>
+<a title="Hadoop" href="http://g.csdn.net/5272865" target="_blank" onclick="LogClickCount(this,336);">Hadoop</a>
+<a title="AWS" href="http://g.csdn.net/5272866" target="_blank" onclick="LogClickCount(this,336);">AWS</a>
+<a title="移动游戏" href="http://g.csdn.net/5272870" target="_blank" onclick="LogClickCount(this,336);">移动游戏</a>
+<a title="Java" href="http://g.csdn.net/5272871" target="_blank" onclick="LogClickCount(this,336);">Java</a>
+<a title="Android" href="http://g.csdn.net/5272872" target="_blank" onclick="LogClickCount(this,336);">Android</a>
+<a title="iOS" href="http://g.csdn.net/5272873" target="_blank" onclick="LogClickCount(this,336);">iOS</a>
+<a title="Swift" href="http://g.csdn.net/5272868" target="_blank" onclick="LogClickCount(this,336);">Swift</a>
+<a title="智能硬件" href="http://g.csdn.net/5272869" target="_blank" onclick="LogClickCount(this,336);">智能硬件</a>
+<a title="Docker" href="http://g.csdn.net/5272867" target="_blank" onclick="LogClickCount(this,336);">Docker</a>
+<a title="OpenStack" href="http://g.csdn.net/5272925" target="_blank" onclick="LogClickCount(this,336);">OpenStack</a>
+<a title="VPN" href="http://www.csdn.net/tag/vpn" target="_blank" onclick="LogClickCount(this,336);">VPN</a>
+<a title="Spark" href="http://g.csdn.net/5272924" target="_blank" onclick="LogClickCount(this,336);">Spark</a>
+<a title="ERP" href="http://www.csdn.net/tag/erp" target="_blank" onclick="LogClickCount(this,336);">ERP</a>
+<a title="IE10" href="http://www.csdn.net/tag/ie10" target="_blank" onclick="LogClickCount(this,336);">IE10</a>
+<a title="Eclipse" href="http://www.csdn.net/tag/eclipse" target="_blank" onclick="LogClickCount(this,336);">Eclipse</a>
+<a title="CRM" href="http://www.csdn.net/tag/crm" target="_blank" onclick="LogClickCount(this,336);">CRM</a>
+<a title="JavaScript" href="http://www.csdn.net/tag/javascript" target="_blank" onclick="LogClickCount(this,336);">JavaScript</a>
+<a title="数据库" href="http://www.csdn.net/tag/数据库" target="_blank" onclick="LogClickCount(this,336);">数据库</a>
+<a title="Ubuntu" href="http://www.csdn.net/tag/ubuntu" target="_blank" onclick="LogClickCount(this,336);">Ubuntu</a>
+<a title="NFC" href="http://www.csdn.net/tag/nfc" target="_blank" onclick="LogClickCount(this,336);">NFC</a>
+<a title="WAP" href="http://www.csdn.net/tag/wap" target="_blank" onclick="LogClickCount(this,336);">WAP</a>
+<a title="jQuery" href="http://www.csdn.net/tag/jquery" target="_blank" onclick="LogClickCount(this,336);">jQuery</a>
+<a title="BI" href="http://www.csdn.net/tag/bi" target="_blank" onclick="LogClickCount(this,336);">BI</a>
+<a title="HTML5" href="http://www.csdn.net/tag/html5" target="_blank" onclick="LogClickCount(this,336);">HTML5</a>
+<a title="Spring" href="http://www.csdn.net/tag/spring" target="_blank" onclick="LogClickCount(this,336);">Spring</a>
+<a title="Apache" href="http://www.csdn.net/tag/apache" target="_blank" onclick="LogClickCount(this,336);">Apache</a>
+<a title=".NET" href="http://www.csdn.net/tag/.net" target="_blank" onclick="LogClickCount(this,336);">.NET</a>
+<a title="API" href="http://www.csdn.net/tag/api" target="_blank" onclick="LogClickCount(this,336);">API</a>
+<a title="HTML" href="http://www.csdn.net/tag/html" target="_blank" onclick="LogClickCount(this,336);">HTML</a>
+<a title="SDK" href="http://www.csdn.net/tag/sdk" target="_blank" onclick="LogClickCount(this,336);">SDK</a>
+<a title="IIS" href="http://www.csdn.net/tag/iis" target="_blank" onclick="LogClickCount(this,336);">IIS</a>
+<a title="Fedora" href="http://www.csdn.net/tag/fedora" target="_blank" onclick="LogClickCount(this,336);">Fedora</a>
+<a title="XML" href="http://www.csdn.net/tag/xml" target="_blank" onclick="LogClickCount(this,336);">XML</a>
+<a title="LBS" href="http://www.csdn.net/tag/lbs" target="_blank" onclick="LogClickCount(this,336);">LBS</a>
+<a title="Unity" href="http://www.csdn.net/tag/unity" target="_blank" onclick="LogClickCount(this,336);">Unity</a>
+<a title="Splashtop" href="http://www.csdn.net/tag/splashtop" target="_blank" onclick="LogClickCount(this,336);">Splashtop</a>
+<a title="UML" href="http://www.csdn.net/tag/uml" target="_blank" onclick="LogClickCount(this,336);">UML</a>
+<a title="components" href="http://www.csdn.net/tag/components" target="_blank" onclick="LogClickCount(this,336);">components</a>
+<a title="Windows Mobile" href="http://www.csdn.net/tag/windowsmobile" target="_blank" onclick="LogClickCount(this,336);">Windows Mobile</a>
+<a title="Rails" href="http://www.csdn.net/tag/rails" target="_blank" onclick="LogClickCount(this,336);">Rails</a>
+<a title="QEMU" href="http://www.csdn.net/tag/qemu" target="_blank" onclick="LogClickCount(this,336);">QEMU</a>
+<a title="KDE" href="http://www.csdn.net/tag/kde" target="_blank" onclick="LogClickCount(this,336);">KDE</a>
+<a title="Cassandra" href="http://www.csdn.net/tag/cassandra" target="_blank" onclick="LogClickCount(this,336);">Cassandra</a>
+<a title="CloudStack" href="http://www.csdn.net/tag/cloudstack" target="_blank" onclick="LogClickCount(this,336);">CloudStack</a>
+<a title="FTC" href="http://www.csdn.net/tag/ftc" target="_blank" onclick="LogClickCount(this,336);">FTC</a>
+<a title="coremail" href="http://www.csdn.net/tag/coremail" target="_blank" onclick="LogClickCount(this,336);">coremail</a>
+<a title="OPhone " href="http://www.csdn.net/tag/ophone " target="_blank" onclick="LogClickCount(this,336);">OPhone </a>
+<a title="CouchBase" href="http://www.csdn.net/tag/couchbase" target="_blank" onclick="LogClickCount(this,336);">CouchBase</a>
+<a title="云计算" href="http://www.csdn.net/tag/云计算" target="_blank" onclick="LogClickCount(this,336);">云计算</a>
+<a title="iOS6" href="http://www.csdn.net/tag/iOS6" target="_blank" onclick="LogClickCount(this,336);">iOS6</a>
+<a title="Rackspace " href="http://www.csdn.net/tag/rackspace " target="_blank" onclick="LogClickCount(this,336);">Rackspace </a>
+<a title="Web App" href="http://www.csdn.net/tag/webapp" target="_blank" onclick="LogClickCount(this,336);">Web App</a>
+<a title="SpringSide" href="http://www.csdn.net/tag/springside" target="_blank" onclick="LogClickCount(this,336);">SpringSide</a>
+<a title="Maemo" href="http://www.csdn.net/tag/maemo" target="_blank" onclick="LogClickCount(this,336);">Maemo</a>
+<a title="Compuware" href="http://www.csdn.net/tag/compuware" target="_blank" onclick="LogClickCount(this,336);">Compuware</a>
+<a title="大数据" href="http://www.csdn.net/tag/大数据" target="_blank" onclick="LogClickCount(this,336);">大数据</a>
+<a title="aptech" href="http://www.csdn.net/tag/aptech" target="_blank" onclick="LogClickCount(this,336);">aptech</a>
+<a title="Perl" href="http://www.csdn.net/tag/perl" target="_blank" onclick="LogClickCount(this,336);">Perl</a>
+<a title="Tornado" href="http://www.csdn.net/tag/tornado" target="_blank" onclick="LogClickCount(this,336);">Tornado</a>
+<a title="Ruby" href="http://www.csdn.net/tag/ruby" target="_blank" onclick="LogClickCount(this,336);">Ruby</a>
+<a title="Hibernate" href="http://www.csdn.net/hibernate" target="_blank" onclick="LogClickCount(this,336);">Hibernate</a>
+<a title="ThinkPHP" href="http://www.csdn.net/tag/thinkphp" target="_blank" onclick="LogClickCount(this,336);">ThinkPHP</a>
+<a title="HBase" href="http://www.csdn.net/tag/hbase" target="_blank" onclick="LogClickCount(this,336);">HBase</a>
+<a title="Pure" href="http://www.csdn.net/tag/pure" target="_blank" onclick="LogClickCount(this,336);">Pure</a>
+<a title="Solr" href="http://www.csdn.net/tag/solr" target="_blank" onclick="LogClickCount(this,336);">Solr</a>
+<a title="Angular" href="http://www.csdn.net/tag/angular" target="_blank" onclick="LogClickCount(this,336);">Angular</a>
+<a title="Cloud Foundry" href="http://www.csdn.net/tag/cloudfoundry" target="_blank" onclick="LogClickCount(this,336);">Cloud Foundry</a>
+<a title="Redis" href="http://www.csdn.net/tag/redis" target="_blank" onclick="LogClickCount(this,336);">Redis</a>
+<a title="Scala" href="http://www.csdn.net/tag/scala" target="_blank" onclick="LogClickCount(this,336);">Scala</a>
+<a title="Django" href="http://www.csdn.net/tag/django" target="_blank" onclick="LogClickCount(this,336);">Django</a>
+<a title="Bootstrap" href="http://www.csdn.net/tag/bootstrap" target="_blank" onclick="LogClickCount(this,336);">Bootstrap</a>
+    </div>
+</div>
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });
+        },200);  
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }    
+
+</script>
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+            <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/haishu_zheng" target="_blank">
+    <img src="http://avatar.csdn.net/B/4/B/1_haishu_zheng.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/haishu_zheng" class="user_name" target="_blank">haishu_zheng</a></span>
+</div>
+<div class="interact">
+<a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_guanzhu'])"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=haishu_zheng','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>55203次</span></li>
+    <li>积分：<span>1025</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://csdnimg.cn/jifen/images/xunzhang/jianzhang/blog4.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：1025 </div>
+        </span>  </li>
+    <li>排名：<span>第18585名</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>42篇</span></li>
+    <li>转载：<span>5篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>11条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script>
+<div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">
+             <li>
+                <a href="http://blog.csdn.net/haishu_zheng/article/category/1796295" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">iOS</a><span>(18)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/haishu_zheng/article/category/1796297" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C/C++</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/haishu_zheng/article/category/1796299" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Linux</a><span>(5)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/haishu_zheng/article/category/1796303" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Algorithm</a><span>(4)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/haishu_zheng/article/category/1796307" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Database</a><span>(2)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/haishu_zheng/article/category/1796311" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Java</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/haishu_zheng/article/category/1796333" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Assembly</a><span>(0)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/haishu_zheng/article/category/1834063" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Design Pattern</a><span>(1)</span>
+            </li>
+             <li>
+                <a href="http://blog.csdn.net/haishu_zheng/article/category/1878773" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">Oracle</a><span>(4)</span>
+            </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="http://blog.csdn.net/haishu_zheng/article/month/2014/08">2014年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2014/07">2014年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2014/02">2014年02月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2014/01">2014年01月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2013/12">2013年12月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2013/11">2013年11月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2013/10">2013年10月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2013/09">2013年09月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2013/08">2013年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2013/06">2013年06月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2013/03">2013年03月</a><span>(6)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2013/02">2013年02月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2012/11">2012年11月</a><span>(7)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2012/10">2012年10月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2012/09">2012年09月</a><span>(3)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2012/08">2012年08月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2012/07">2012年07月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2012/03">2012年03月</a><span>(2)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2012/02">2012年02月</a><span>(4)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2011/05">2011年05月</a><span>(1)</span></li><li><a href="http://blog.csdn.net/haishu_zheng/article/month/2011/02">2011年02月</a><span>(1)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/haishu_zheng/article/details/7987334" title="iPhone4升级到ios5教程">iPhone4升级到ios5教程</a><span>(9987)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/12872315" title="iOS内存管理">iOS内存管理</a><span>(5419)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/12873151" title="Objective-C中的@dynamic">Objective-C中的@dynamic</a><span>(4006)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/16992259" title="Xcode5制作iOS静态库">Xcode5制作iOS静态库</a><span>(3569)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8598668" title="iOS面试题集锦（1~10）">iOS面试题集锦（1~10）</a><span>(2222)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/19180081" title="Win7下完全卸载Oracle 11g的步骤">Win7下完全卸载Oracle 11g的步骤</a><span>(2076)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8727739" title="HP450安装Ubuntu解决黑屏的方法">HP450安装Ubuntu解决黑屏的方法</a><span>(1924)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8229442" title="iOS图片裁剪、绘制背景色">iOS图片裁剪、绘制背景色</a><span>(1501)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8078490" title="XCode编译警告和错误解决方法集锦">XCode编译警告和错误解决方法集锦</a><span>(1401)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/7258638" title="Mac下的git配置">Mac下的git配置</a><span>(1169)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/haishu_zheng/article/details/17220429" title="约瑟夫环的链表解法和数学解法">约瑟夫环的链表解法和数学解法</a><span>(4)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8613573" title="KMP算法">KMP算法</a><span>(3)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/16992259" title="Xcode5制作iOS静态库">Xcode5制作iOS静态库</a><span>(2)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8727739" title="HP450安装Ubuntu解决黑屏的方法">HP450安装Ubuntu解决黑屏的方法</a><span>(2)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8720434" title="no such partition grub rescue的解决方案">no such partition grub rescue的解决方案</a><span>(0)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8721208" title="HP450 C0S18PA显卡驱动下载地址">HP450 C0S18PA显卡驱动下载地址</a><span>(0)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8700369" title="Xcode调试打印方法">Xcode调试打印方法</a><span>(0)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/9025755" title="如何设置jdk环境变量">如何设置jdk环境变量</a><span>(0)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8647150" title="Linux下的vi命令">Linux下的vi命令</a><span>(0)</span>
+</li>
+<li>
+<a href="/haishu_zheng/article/details/8626807" title="Linux无线ESSID:off/any的错误">Linux无线ESSID:off/any的错误</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend"></ul>
+</div>
+<script type="text/javascript">
+ new Ad(12, 'ad_commend');
+</script><div id="newcomments" class="panel">
+<ul class="panel_head"><span>最新评论</span></ul>
+<ul class="panel_body itemlist">
+    <li>
+   
+         <a href="/haishu_zheng/article/details/16992259#comments">Xcode5制作iOS静态库</a>
+    <p style="margin:0px;"><a href="/jh10622110" class="user_name">jh10622110</a>:
+怎么可能自动.h文件，还有include文件什么时候有什么时候没有。。你最好百度清楚
+    </p>
+    </li>
+    <li>
+   
+         <a href="/haishu_zheng/article/details/16992259#comments">Xcode5制作iOS静态库</a>
+    <p style="margin:0px;"><a href="/yupixiu" class="user_name">yupixiu</a>:
+按照这个方法我生成出来了.a文件，但是对应的include文件夹和下面的.h文件都没有生成。这个我从...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/haishu_zheng/article/details/8613573#comments">KMP算法</a>
+    <p style="margin:0px;"><a href="/yhy15292083137" class="user_name">yhy15292083137</a>:
+这篇文章讲得真好！！！！真心谢谢ｌｚ
+    </p>
+    </li>
+    <li>
+   
+         <a href="/haishu_zheng/article/details/8727739#comments">HP450安装Ubuntu解决黑屏的方法</a>
+    <p style="margin:0px;"><a href="/haishu_zheng" class="user_name">haishu_zheng</a>:
+@u010295296:集成显卡驱动是装win7系统自带的。独立显卡驱动当时也是老装不上，后来打了俩...
+    </p>
+    </li>
+    <li>
+   
+         <a href="/haishu_zheng/article/details/8727739#comments">HP450安装Ubuntu解决黑屏的方法</a>
+    <p style="margin:0px;"><a href="/u010295296" class="user_name">u010295296</a>:
+专门注册过来顶一下，随便问问大侠450的双显卡你咋安装的.
+    </p>
+    </li>
+    <li>
+   
+         <a href="/haishu_zheng/article/details/8727739#comments">KMP算法</a>
+    <p style="margin:0px;"><a href="/haishu_zheng" class="user_name">haishu_zheng</a>:
+@zhuxincheng_1218:对，那个地方不能再优化。已更正。
+    </p>
+    </li>
+    <li>
+   
+         <a href="/haishu_zheng/article/details/8727739#comments">KMP算法</a>
+    <p style="margin:0px;"><a href="/zhuxincheng_1218" class="user_name">zhuxincheng_1218</a>:
+第四点可优化的地方应该是个错误,举个例子：char *szSource = &quot;abababadaba...
+    </p>
+    </li>
+</ul>
+</div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+
+            <div class="clear">
+            </div>
+        </div>
+        
+
+<script type="text/javascript" src="http://csdnimg.cn/rabbit/cnick/cnick.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=985083"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/JavaScript1.js"></script>
+
+    <script type="text/javascript" src="http://passport.csdn.net/content/loginbox/login.js"></script>
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript" src="http://zz.csdn.net/js/count.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a>"
+                    + "<a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+    });
+</script>
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://static.csdn.net/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+   
+    <link href="http://csdnimg.cn/comm_ask/css/ask_float_block.css" type="text/css" rel="stylesheet" />
+    <script language='JavaScript' type='text/javascript' src='http://csdnimg.cn/comm_ask/js/libs/wmd.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://csdnimg.cn/comm_ask/js/libs/showdown.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://csdnimg.cn/comm_ask/js/libs/prettify.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://csdnimg.cn/comm_ask/js/apps/ask_float_block.js'></script>
+
+</body>
+</html>
